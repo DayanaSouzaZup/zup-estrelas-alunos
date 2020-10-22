@@ -7,6 +7,8 @@ import br.com.zup.estrelas.alunos.entity.Aluno;
 
 @Repository
 	public interface AlunoRepository extends CrudRepository<Aluno, Long> {
+	Aluno findByCpf (String CPF);
+	Aluno findByNome (String nome);
 		
 	}
 

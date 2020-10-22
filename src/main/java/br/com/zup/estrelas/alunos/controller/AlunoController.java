@@ -26,9 +26,20 @@ public class AlunoController {
 	}
 	
 	@GetMapping(path = "/{matricula}", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Aluno buscaAluno(@PathVariable Long matricula) {
+	public Aluno buscaAlunoPorMatricula(@PathVariable Long matricula) {
 	return repository.findById(matricula).get();
 	}
+	
+	@GetMapping(path = "/cpf/{cpf}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public Aluno buscaAlunoPorCpf(@PathVariable String cpf) {
+		return repository.findByCpf(cpf);
+	}
+	
+	@GetMapping(path = "/nome/{nome}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public Aluno buscaAlunoPorNome(@PathVariable String nome) {
+		return repository.findByNome(nome);
+	}
+	
 	
 
 	
