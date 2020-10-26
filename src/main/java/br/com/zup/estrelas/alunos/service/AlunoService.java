@@ -20,12 +20,6 @@ public class AlunoService {
 
 		if (repository.existsById(aluno.getMatricula())) {
 
-			LocalDate dataRef = LocalDate.of(1990, 12, 31);
-
-			if (aluno.getDataNascimento().isBefore(dataRef) && aluno.getValorMensalidade() > 100) {
-
-			}
-
 			return null;
 		}
 		return this.repository.save(aluno);
@@ -34,6 +28,8 @@ public class AlunoService {
 	public Aluno alteraAluno(Aluno aluno) {
 
 		if (repository.existsById(aluno.getMatricula())) {
+			// Aqui iriam os set's se houvesse uma classe alunoDTO
+
 			return repository.save(aluno);
 		}
 		return null;
@@ -41,17 +37,29 @@ public class AlunoService {
 	}
 
 	public Aluno buscaAlunoPorMatricula(Long matricula) {
-		return repository.findById(matricula).get();
+
+		if (repository.existsById(matricula)) {
+			return repository.findById(matricula).get();
+		}
+
+		return null;
 	}
 
 	public Optional<Aluno> buscaPorCpf(String cpf) {
-		return repository.findByCpf(cpf);
+		if (repository.existsByCpf(cpf)) {
+
+			return repository.findByCpf(cpf);
+		}
+
+		return null;
 	}
 
-	public List<Aluno> listaALunos() {
+	public List<Aluno> listaAlunos() {
+		
 		return (List<Aluno>) repository.findAll();
 	}
 
+	//trocar boolean por mensagemDTO
 	public boolean removeAluno(Long matricula) {
 		if (repository.existsById(matricula)) {
 			repository.deleteById(matricula);

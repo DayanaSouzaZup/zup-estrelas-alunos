@@ -8,15 +8,15 @@ import org.springframework.stereotype.Repository;
 import br.com.zup.estrelas.alunos.entity.Aluno;
 
 @Repository
-	public interface AlunoRepository extends CrudRepository<Aluno, Long> {
-	
+public interface AlunoRepository extends CrudRepository<Aluno, Long> {
+
 	Optional<Aluno> findByCpf(String cpf);
-	
-	/*
-	 * Aluno findByCpf (String CPF); Aluno findByNome (String nome); Aluno
-	 * findByValorMensalidade (float valorMensalidade);
-	 */
-		
-	}
 
+	boolean existsByCpf(String cpf);
 
+}
+
+/*
+ * Aluno findByCpf (String CPF); Aluno findByNome (String nome); Aluno
+ * findByValorMensalidade (float valorMensalidade);
+ */
